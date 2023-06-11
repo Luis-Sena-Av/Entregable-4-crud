@@ -9,6 +9,7 @@ function App() {
   const baseUrl="https://users-crud.academlo.tech/"
   const [infoApi,createRegister,readApi,updateRegister,deleteRegister]=useFecth(baseUrl)
   const [show, setshow] = useState(true)
+  const [boton,setboton] = useState()
   const [updateinfo, setupdateinfo] = useState({})
   
   useEffect(()=>{
@@ -16,7 +17,9 @@ function App() {
   },[])  
 
   const handleshow=()=>{
-    setshow(!show)
+    setboton(true)
+    console.log(boton)
+    setshow(!show)    
     setupdateinfo({
       email:"",
       password: "",
@@ -39,11 +42,11 @@ function App() {
         
 
         <div className='contencart'>
-         {infoApi?.map(user=><CartUsers show={show} setshow={setshow} user={user} key={user.id} deleteRegister={deleteRegister} setupdateinfo={setupdateinfo}/>)}
+         {infoApi?.map(user=><CartUsers setboton={setboton} show={show} setshow={setshow} user={user} key={user.id} deleteRegister={deleteRegister} setupdateinfo={setupdateinfo}/>)}
         </div>        
       </div>
 
-      <FormUser show={show} setshow={setshow} createRegister={createRegister} updateinfo={updateinfo} />
+      <FormUser boton={boton} setupdateinfo={setupdateinfo} show={show} setshow={setshow} createRegister={createRegister} updateinfo={updateinfo} />
     
     </div>
   )

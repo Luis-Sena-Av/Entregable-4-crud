@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CartUsers = ({user,deleteRegister,setupdateinfo,setshow,show}) => {
+export const CartUsers = ({user,deleteRegister,setupdateinfo,setshow,show,setboton}) => {
 
     const handledelete=(e)=>{
         deleteRegister(e.target.id)
@@ -9,15 +9,16 @@ export const CartUsers = ({user,deleteRegister,setupdateinfo,setshow,show}) => {
     const handleUptade=()=>{
         setupdateinfo(user)
         setshow(!show)
+        setboton(false)
     }
    
   return (
     <div className='cart'>
-        <h2 className='nombre'>{user.first_name} {user.last_name}</h2>
+        <h2 className='nombre'>{user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1)} {user.last_name.charAt(0).toUpperCase() + user.last_name.slice(1)}</h2>
         <hr />
         <div className='info'>
-            <p>Correo <br /> <span>{user.email}</span></p>
-            <p>Cumpleaños <br /> <span>{user.birthday}</span></p>
+            <p>Correo <br /><span><i className='bx bx-envelope'></i> {user.email}</span></p>
+            <p>Cumpleaños <br /> <span><i className='bx bx-gift'></i>{user.birthday}</span></p>
         </div>
         <hr/>
         <div className='iconcart'>
