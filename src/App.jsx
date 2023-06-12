@@ -32,18 +32,16 @@ function App() {
   return (
     <div >      
      
-       <div className='principal'>
-        <div className='primer'>
-        <div className='addUser'>
-          <h2>Usuarios</h2>        
-          <button className='new' onClick={handleshow}><i className='bx bx-plus'></i> Crear un nuevo usuario</button>
-        </div>
-        </div>
-        
+      <div className='principal'>
 
-        <div className='contencart'>
-         {infoApi?.map(user=><CartUsers setboton={setboton} show={show} setshow={setshow} user={user} key={user.id} deleteRegister={deleteRegister} setupdateinfo={setupdateinfo}/>)}
-        </div>        
+        <div className='primer'>
+          <div className='addUser'>
+            <h2>Usuarios</h2>        
+            <button className='new' onClick={handleshow}><i className='bx bx-plus'></i> Crear un nuevo usuario</button>
+          </div>  
+        </div>
+
+        {Object.keys(infoApi).length? <div className='contencart'>{infoApi?.map(user=><CartUsers setboton={setboton} show={show} setshow={setshow} user={user} key={user.id} deleteRegister={deleteRegister} setupdateinfo={setupdateinfo}/>)}</div>:<div className='mensaje'>No hay usuarios registrados hasta el momento</div> } 
       </div>
 
       <FormUser boton={boton} setupdateinfo={setupdateinfo} show={show} setshow={setshow} createRegister={createRegister} updateinfo={updateinfo} />
