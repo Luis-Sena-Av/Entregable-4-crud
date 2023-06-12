@@ -3,7 +3,7 @@ import {useState } from 'react'
 
 export const useFecth = (baseUrl) => {
     
-    const [infoApi, setinfoApi] = useState()
+    const [infoApi, setinfoApi] = useState({})
     //Create-crear un nuevo registro
     const createRegister=(data)=>{
         const url=`${baseUrl}users/`
