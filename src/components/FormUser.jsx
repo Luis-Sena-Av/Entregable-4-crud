@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const FormUser = ({createRegister,updateinfo,show,setshow,setupdateinfo,boton}) => {
+const FormUser = ({createRegister,updateinfo,show,setshow,setupdateinfo,boton,updateRegister,setboton}) => {
 
     const {register,reset,handleSubmit}=useForm()
 
@@ -11,14 +11,27 @@ const FormUser = ({createRegister,updateinfo,show,setshow,setupdateinfo,boton}) 
     
 
     const submit=(data)=>{
-        createRegister(data)
-        reset({
-            email:"",
-            password: "",
-            first_name: "",
-            last_name:"",
-            birthday:"",    
-        })
+        if(boton){
+            createRegister(data)
+            reset({
+                email:"",
+                password: "",
+                first_name: "",
+                last_name:"",
+                birthday:"",    
+            })
+           
+        }else{
+            updateRegister(updateinfo.id,data)
+            reset({
+                email:"",
+                password: "",
+                first_name: "",
+                last_name:"",
+                birthday:"",    
+            })
+            setboton(true)
+        }        
         setupdateinfo({})
     }
 
@@ -27,8 +40,7 @@ const FormUser = ({createRegister,updateinfo,show,setshow,setupdateinfo,boton}) 
     }
 
   return (
-    <div className={`modalform ${show && 'close'}`}>
-        
+    <div className={`modalform ${show && 'close'}`}>        
         <form className='form' onSubmit={handleSubmit(submit)} >
         <i onClick={handleshow} className='bx bx-x'></i>
         <div className='formUser'>

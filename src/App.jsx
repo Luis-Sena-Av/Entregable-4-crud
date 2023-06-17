@@ -14,11 +14,10 @@ function App() {
   
   useEffect(()=>{
     readApi()
-  },[])  
+  },[infoApi])  
 
   const handleshow=()=>{
     setboton(true)
-    console.log(boton)
     setshow(!show)    
     setupdateinfo({
       email:"",
@@ -44,7 +43,7 @@ function App() {
         {Object.keys(infoApi).length? <div className='contencart'>{infoApi?.map(user=><CartUsers setboton={setboton} show={show} setshow={setshow} user={user} key={user.id} deleteRegister={deleteRegister} setupdateinfo={setupdateinfo}/>)}</div>:<div className='mensaje'>No hay usuarios registrados hasta el momento</div> } 
       </div>
 
-      <FormUser boton={boton} setupdateinfo={setupdateinfo} show={show} setshow={setshow} createRegister={createRegister} updateinfo={updateinfo} />
+      <FormUser setboton={setboton} updateRegister={updateRegister} boton={boton} setupdateinfo={setupdateinfo} show={show} setshow={setshow} createRegister={createRegister} updateinfo={updateinfo} />
     
     </div>
   )

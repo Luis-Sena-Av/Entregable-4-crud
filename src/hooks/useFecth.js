@@ -9,7 +9,6 @@ export const useFecth = (baseUrl) => {
         const url=`${baseUrl}users/`
         axios.post(url,data)
             .then(res=>{
-                console.log(res)
                 setinfoApi([...infoApi,res.data]) 
             })
             .catch(error=>console.log(error))
@@ -27,20 +26,26 @@ export const useFecth = (baseUrl) => {
     const updateRegister=(id,data)=>{
        const url=`${baseUrl}users/${id}/`
         axios.put(url,data)
-            .then(res=>console.log(res))
-            .catch(error=>console.log(error))
-    }
-
-     //delete-eliminar un registro
-    const deleteRegister=(id)=>{
-       const url=`${baseUrl}users/${id}/`
-        axios.delete(url)
             .then(res=>{
-                console.log(res)
-                setinfoApi(infoApi.filter(element=>element.id!=id)) 
+                infoApi.map(user=>{
+                    if(user.id===id){
+                        return res.data
+                    }else{
+                        return user
+                    }
+                })
             })
             .catch(error=>console.log(error))
     }
 
+    //delete-eliminar un registro
+    const deleteRegister=(id)=>{
+       const url=`${baseUrl}users/${id}/`
+        axios.delete(url)
+            .then(res=>{
+                setinfoApi(infoApi.filter(element=>element.id!=id)) 
+            })
+            .catch(error=>console.log(error))
+    }
     return [infoApi,createRegister,readApi,updateRegister,deleteRegister]
 }
